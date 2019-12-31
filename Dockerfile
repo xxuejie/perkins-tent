@@ -31,9 +31,10 @@ RUN rm -rf /tmp/ckb_v0.26.0_x86_64-unknown-linux-gnu/ckb /tmp/goreman /tmp/dumb-
 RUN apt-get -y remove wget gnupg ca-certificates unzip software-properties-common && apt-get -y autoremove && apt-get clean
 
 RUN mkdir /data
-COPY nginx.conf /data/nginx.conf
-COPY setup.sh /data/setup.sh
-COPY Procfile /data/Procfile
+RUN mkdir /confs
+COPY nginx.conf /confs/nginx.conf
+COPY setup.sh /confs/setup.sh
+COPY Procfile /confs/Procfile
 
 # CKB network port
 EXPOSE 8115
@@ -41,4 +42,4 @@ EXPOSE 8115
 EXPOSE 9115
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-CMD ["bash", "-c", "/data/setup.sh && exec goreman -set-ports=false -exit-on-error -f /data/Procfile start"]
+CMD ["bash", "-c", "/confs/setup.sh && exec goreman -set-ports=false -exit-on-error -f /data/confs/Procfile start"]
