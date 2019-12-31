@@ -41,4 +41,4 @@ EXPOSE 8115
 EXPOSE 9115
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-CMD ["bash", "-c", "/data/setup.sh && exec goreman -set-ports=false -f /data/Procfile start"]
+CMD ["bash", "-c", "/data/setup.sh && exec goreman -set-ports=false -exit-on-error -f /data/Procfile start"]
