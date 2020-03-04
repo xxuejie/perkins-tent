@@ -2,4 +2,8 @@
 set -ex
 
 [ -d /data/mainnet ] || ckb init -c mainnet -C /data/mainnet
-[ -d /data/confs ] || cp -r /confs /data/confs
+if [ ! -d /data/confs ]; then
+    cp -r /confs /data/confs
+    sed -i s/@RPC_RATE/$RPC_RATE/ /data/confs/nginx.conf
+    sed -i s/@GRAPHQL_RATE/$GRAPHQL_RATE/ /data/confs/nginx.conf
+fi

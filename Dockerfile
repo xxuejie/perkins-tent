@@ -36,8 +36,6 @@ ENV GRAPHQL_RATE 5
 RUN mkdir /data
 RUN mkdir /confs
 COPY nginx.conf /confs/nginx.conf
-RUN sed -i s/@RPC_RATE/$RPC_RATE/ /confs/nginx.conf
-RUN sed -i s/@GRAPHQL_RATE/$GRAPHQL_RATE/ /confs/nginx.conf
 COPY setup.sh /confs/setup.sh
 COPY Procfile /confs/Procfile
 
