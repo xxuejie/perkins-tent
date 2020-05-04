@@ -21,7 +21,7 @@ RUN apt-get update
 RUN apt-get -y install --no-install-recommends openresty
 
 COPY --from=builder /ckb-graphql-server/target/release/ckb-graphql-server /bin/ckb-graphql-server
-COPY --from=builder /ckb-graphql-server/target/release/ckb-indexer /bin/ckb-indexer
+COPY --from=builder /ckb-indexer/target/release/ckb-indexer /bin/ckb-indexer
 
 RUN wget https://github.com/nervosnetwork/ckb/releases/download/v0.31.1/ckb_v0.31.1_x86_64-unknown-linux-gnu.tar.gz -O /tmp/ckb_v0.31.1_x86_64-unknown-linux-gnu.tar.gz
 RUN cd /tmp && tar xzf ckb_v0.31.1_x86_64-unknown-linux-gnu.tar.gz
