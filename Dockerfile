@@ -1,5 +1,8 @@
-FROM rust:1.40 as builder
+FROM rust:1.41 as builder
 MAINTAINER Xuejie Xiao <xxuejie@gmail.com>
+
+RUN apt-get update
+RUN apt-get -y install --no-install-recommends llvm-dev clang libclang-dev
 
 RUN git clone https://github.com/xxuejie/ckb-graphql-server /ckb-graphql-server
 RUN cd /ckb-graphql-server && git checkout b7945dc81f46c958a1f9a2997ed42253b34412a2 && cargo build --release
