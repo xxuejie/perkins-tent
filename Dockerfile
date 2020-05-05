@@ -41,6 +41,9 @@ ENV RPC_RATE 2
 ENV INDEXER_RPC_RATE 5
 ENV GRAPHQL_RATE 5
 
+ENV ENABLE_GRAPHQL_SERVER true
+ENV ENABLE_INDEXER true
+
 RUN mkdir /data
 RUN mkdir /confs
 COPY nginx.conf /confs/nginx.conf
