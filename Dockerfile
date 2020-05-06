@@ -37,6 +37,7 @@ RUN dpkg -i /tmp/dumb-init.deb
 RUN rm -rf /tmp/ckb_v0.31.1_x86_64-unknown-linux-gnu/ckb /tmp/goreman /tmp/dumb-init.deb
 RUN apt-get -y remove wget gnupg ca-certificates unzip software-properties-common && apt-get -y autoremove && apt-get clean
 
+ENV ENABLE_RATE_LIMIT true
 ENV RPC_RATE 2
 ENV INDEXER_RPC_RATE 5
 ENV GRAPHQL_RATE 5

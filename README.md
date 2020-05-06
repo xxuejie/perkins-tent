@@ -7,6 +7,7 @@ This repository provides a docker image containing the following pieces:
 
 * [ckb](https://github.com/nervosnetwork/ckb)
 * [ckb-graphql-server](https://github.com/xxuejie/ckb-graphql-server)
+* [ckb-indexer](https://github.com/quake/ckb-indexer)
 * [OpenResty](https://github.com/openresty/openresty) which reverse-proxies and rate-limits CKB RPC as well ckb-graphql-server requests.
 
 The idea is that anyone can create a server with the docker image which serves CKB to the general public.
