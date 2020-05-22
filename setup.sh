@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-[ -d /data/mainnet ] || ckb init -c mainnet -C /data/mainnet
+[ -d /data/ckb-data ] || ckb init -c mainnet -C /data/ckb-data
 if [ ! -d /data/confs ]; then
     cp -r /confs /data/confs
 
@@ -14,7 +14,7 @@ if [ ! -d /data/confs ]; then
     fi
 
     if [ "$ENABLE_GRAPHQL_SERVER" == "true" ]; then
-        echo "graphql: sleep 5; ckb-graphql-server -d /data/mainnet/data/db -l 127.0.0.1:3000" >> /data/confs/Procfile
+        echo "graphql: sleep 5; ckb-graphql-server -d /data/ckb-data/data/db -l 127.0.0.1:3000" >> /data/confs/Procfile
     fi
 
     if [ "$ENABLE_INDEXER" == "true" ]; then
