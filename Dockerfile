@@ -45,6 +45,8 @@ ENV GRAPHQL_RATE 5
 ENV ENABLE_GRAPHQL_SERVER true
 ENV ENABLE_INDEXER true
 
+ENV CKB_NETWORK mainnet
+
 RUN mkdir /data
 RUN mkdir /confs
 COPY nginx.conf /confs/nginx.conf

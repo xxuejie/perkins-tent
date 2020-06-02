@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-[ -d /data/ckb-data ] || ckb init -c mainnet -C /data/ckb-data
+[ -d /data/ckb-data ] || ckb init -c $CKB_NETWORK -C /data/ckb-data
 if [ ! -d /data/confs ]; then
     cp -r /confs /data/confs
 
