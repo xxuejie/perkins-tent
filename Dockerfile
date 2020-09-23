@@ -8,7 +8,7 @@ RUN git clone https://github.com/xxuejie/ckb-graphql-server /ckb-graphql-server
 RUN cd /ckb-graphql-server && git checkout f750d67ea3cbeac027a47d1319a6998fce9a8d1f && cargo build --release
 
 RUN git clone https://github.com/quake/ckb-indexer /ckb-indexer
-RUN cd /ckb-indexer && git checkout a253e1f971b9d85623588fc748194cc5eb65feb8 && cargo build --release
+RUN cd /ckb-indexer && git checkout 76f537e02250e3e6c4091c966bb7735f28e8974e && cargo build --release
 
 FROM debian:buster
 MAINTAINER Xuejie Xiao <xxuejie@gmail.com>
@@ -23,9 +23,9 @@ RUN apt-get -y install --no-install-recommends openresty
 COPY --from=builder /ckb-graphql-server/target/release/ckb-graphql-server /bin/ckb-graphql-server
 COPY --from=builder /ckb-indexer/target/release/ckb-indexer /bin/ckb-indexer
 
-RUN wget https://github.com/nervosnetwork/ckb/releases/download/v0.34.1/ckb_v0.34.1_x86_64-unknown-linux-gnu.tar.gz -O /tmp/ckb_v0.34.1_x86_64-unknown-linux-gnu.tar.gz
-RUN cd /tmp && tar xzf ckb_v0.34.1_x86_64-unknown-linux-gnu.tar.gz
-RUN cp /tmp/ckb_v0.34.1_x86_64-unknown-linux-gnu/ckb /bin/ckb
+RUN wget https://github.com/nervosnetwork/ckb/releases/download/v0.36.0/ckb_v0.36.0_x86_64-unknown-linux-gnu.tar.gz -O /tmp/ckb_v0.36.0_x86_64-unknown-linux-gnu.tar.gz
+RUN cd /tmp && tar xzf ckb_v0.36.0_x86_64-unknown-linux-gnu.tar.gz
+RUN cp /tmp/ckb_v0.36.0_x86_64-unknown-linux-gnu/ckb /bin/ckb
 
 RUN mkdir /tmp/goreman && wget https://github.com/mattn/goreman/releases/download/v0.3.4/goreman_linux_amd64.zip -O /tmp/goreman/goreman_linux_amd64.zip
 RUN cd /tmp/goreman && unzip goreman_linux_amd64.zip
@@ -34,7 +34,7 @@ RUN cp /tmp/goreman/goreman /bin/goreman
 RUN wget https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64.deb -O /tmp/dumb-init.deb
 RUN dpkg -i /tmp/dumb-init.deb
 
-RUN rm -rf /tmp/ckb_v0.34.1_x86_64-unknown-linux-gnu/ckb /tmp/goreman /tmp/dumb-init.deb
+RUN rm -rf /tmp/ckb_v0.36.0_x86_64-unknown-linux-gnu/ckb /tmp/goreman /tmp/dumb-init.deb
 RUN apt-get -y remove wget gnupg ca-certificates unzip software-properties-common && apt-get -y autoremove && apt-get clean
 
 ENV ENABLE_RATE_LIMIT true
