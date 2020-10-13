@@ -18,7 +18,7 @@ RUN apt-get -y install --no-install-recommends wget gnupg ca-certificates unzip 
 RUN wget -O - https://openresty.org/package/pubkey.gpg | apt-key add -
 RUN add-apt-repository -y "deb http://openresty.org/package/debian $(lsb_release -sc) openresty"
 RUN apt-get update
-RUN apt-get -y install --no-install-recommends openresty
+RUN apt-get -y install --no-install-recommends openresty libssl1.1
 
 COPY --from=builder /ckb-graphql-server/target/release/ckb-graphql-server /bin/ckb-graphql-server
 COPY --from=builder /ckb-indexer/target/release/ckb-indexer /bin/ckb-indexer
