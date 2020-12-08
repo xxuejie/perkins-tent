@@ -4,9 +4,6 @@ MAINTAINER Xuejie Xiao <xxuejie@gmail.com>
 RUN apt-get update
 RUN apt-get -y install --no-install-recommends llvm-dev clang libclang-dev
 
-RUN git clone https://github.com/xxuejie/ckb-graphql-server /ckb-graphql-server
-RUN cd /ckb-graphql-server && git checkout f750d67ea3cbeac027a47d1319a6998fce9a8d1f && cargo build --release
-
 RUN git clone https://github.com/quake/ckb-indexer /ckb-indexer
 RUN cd /ckb-indexer && git checkout 76f537e02250e3e6c4091c966bb7735f28e8974e && cargo build --release
 
@@ -20,7 +17,6 @@ RUN add-apt-repository -y "deb http://openresty.org/package/debian $(lsb_release
 RUN apt-get update
 RUN apt-get -y install --no-install-recommends openresty libssl1.1
 
-COPY --from=builder /ckb-graphql-server/target/release/ckb-graphql-server /bin/ckb-graphql-server
 COPY --from=builder /ckb-indexer/target/release/ckb-indexer /bin/ckb-indexer
 
 RUN wget https://github.com/nervosnetwork/ckb/releases/download/v0.36.0/ckb_v0.36.0_x86_64-unknown-linux-gnu.tar.gz -O /tmp/ckb_v0.36.0_x86_64-unknown-linux-gnu.tar.gz
@@ -40,9 +36,7 @@ RUN apt-get -y remove wget gnupg ca-certificates unzip software-properties-commo
 ENV ENABLE_RATE_LIMIT true
 ENV RPC_RATE 2
 ENV INDEXER_RPC_RATE 5
-ENV GRAPHQL_RATE 5
 
-ENV ENABLE_GRAPHQL_SERVER false
 ENV ENABLE_INDEXER true
 
 ENV CKB_NETWORK mainnet
